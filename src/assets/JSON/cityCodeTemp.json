@@ -1,0 +1,283 @@
+{
+  "110000": {
+      "city_code": "101010100",
+      "city_name": "北京"
+  },
+  "120000": {
+      "city_code": "101030100",
+      "city_name": "天津",
+      "children": []
+  },
+  "130000": {
+      "city_name": "河北",
+      "children": [
+          {
+              "city_code": "101090101",
+              "city_name": "石家庄"
+          }
+      ]
+  },
+  "140000": {
+      "city_name": "山西",
+      "children": [
+          {
+              "city_code": "101100101",
+              "city_name": "太原"
+          }
+      ]
+  },
+  "150000": {
+      "city_name": "内蒙古",
+      "children": [
+          {
+              "city_code": "101080101",
+              "city_name": "呼和浩特"
+          }
+      ]
+  },
+  "210000": {
+      "city_name": "辽宁",
+      "children": [
+          {
+              "city_code": "101070101",
+              "city_name": "沈阳"
+          }
+      ]
+  },
+  "220000": {
+      "city_name": "吉林",
+      "children": [
+          {
+              "city_code": "101060101",
+              "city_name": "长春"
+          }
+      ]
+  },
+  "230000": {
+      "city_name": "黑龙江",
+      "children": [
+          {
+              "city_code": "101050101",
+              "city_name": "哈尔滨"
+          }
+      ]
+  },
+  "310000": {
+      "city_code": "101020100",
+      "city_name": "上海",
+      "children": []
+  },
+  "320000": {
+      "city_name": "江苏",
+      "children": [
+          {
+              "city_code": "101190101",
+              "city_name": "南京"
+          }
+      ]
+  },
+  "330000": {
+      "city_name": "浙江",
+      "children": [
+          {
+              "city_code": "101210101",
+              "city_name": "杭州"
+          }
+      ]
+  },
+  "340000": {
+      "city_name": "安徽",
+      "children": [
+          {
+              "city_code": "101220101",
+              "city_name": "合肥"
+          }
+      ]
+  },
+  "350000": {
+      "city_name": "福建",
+      "children": [
+          {
+              "city_code": "101230101",
+              "city_name": "福州"
+          }
+      ]
+  },
+  "360000": {
+      "city_name": "江西",
+      "children": [
+          {
+              "city_code": "101240101",
+              "city_name": "南昌市"
+          }
+      ]
+  },
+  "370000": {
+      "city_name": "山东",
+      "children": [
+          {
+              "city_code": "101120101",
+              "city_name": "济南"
+          }
+      ]
+  },
+  "410000": {
+      "city_name": "河南",
+      "children": [
+          {
+              "city_code": "101180101",
+              "city_name": "郑州"
+          }
+      ]
+  },
+  "420000": {
+      "city_name": "湖北",
+      "children": [
+          {
+              "city_code": "101200101",
+              "city_name": "武汉"
+          }
+      ]
+  },
+  "430000": {
+      "city_name": "湖南",
+      "children": [
+          {
+              "city_code": "101250101",
+              "city_name": "长沙市"
+          }
+      ]
+  },
+  "440000": {
+      "city_name": "广东",
+      "children": [
+          {
+              "city_code": "101280101",
+              "city_name": "广州"
+          }
+      ]
+  },
+  "450000": {
+      "city_name": "广西",
+      "children": [
+          {
+              "city_code": "101300101",
+              "city_name": "南宁"
+          }
+      ]
+  },
+  "460000": {
+      "city_name": "海南",
+      "children": [
+          {
+              "city_code": "101310101",
+              "city_name": "海口"
+          }
+      ]
+  },
+  "500000": {
+      "city_code": "101040100",
+      "city_name": "重庆",
+      "children": []
+  },
+  "510000": {
+      "city_name": "四川",
+      "children": [
+          {
+              "city_code": "101270101",
+              "city_name": "成都"
+          }
+      ]
+  },
+  "520000": {
+      "city_name": "贵州",
+      "children": [
+          {
+              "city_code": "101260101",
+              "city_name": "贵阳"
+          }
+      ]
+  },
+  "530000": {
+      "city_name": "云南",
+      "children": [
+          {
+              "city_code": "101290101",
+              "city_name": "昆明"
+          }
+      ]
+  },
+  "540000": {
+      "city_name": "西藏",
+      "children": [
+          {
+              "city_code": "101140101",
+              "city_name": "拉萨"
+          }
+      ]
+  },
+  "610000": {
+      "city_name": "陕西",
+      "children": [
+          {
+              "city_code": "101110101",
+              "city_name": "西安市"
+          }
+      ]
+  },
+  "620000": {
+      "city_name": "甘肃",
+      "children": [
+          {
+              "city_code": "101160101",
+              "city_name": "兰州"
+          }
+      ]
+  },
+  "630000": {
+      "city_name": "青海",
+      "children": [
+          {
+              "city_code": "101150101",
+              "city_name": "西宁"
+          }
+      ]
+  },
+  "640000": {
+      "city_name": "宁夏",
+      "children": [
+          {
+              "city_code": "101170101",
+              "city_name": "银川"
+          }
+      ]
+  },
+  "650000": {
+      "city_name": "新疆",
+      "children": [
+          {
+              "city_code": "101130101",
+              "city_name": "乌鲁木齐市"
+          }
+      ]
+  },
+  "710000": {
+      "city_name": "台湾",
+      "children": [
+          {
+              "city_code": "101340101",
+              "city_name": "台北"
+          }
+      ]
+  },
+  "810000": {
+      "city_code": "101320101",
+      "city_name": "香港",
+      "children": []
+  },
+  "820000": {
+      "city_code": "101330101",
+      "city_name": "澳门",
+      "children": []
+  }
+}

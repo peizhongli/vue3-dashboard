@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as echarts from "echarts";
-import { onMounted, ref } from "vue";
+import { onMounted, onUpdated, ref, toRefs } from "vue";
 import china from "@assets/JSON/china.json";
 
 interface MapData {
@@ -87,7 +87,7 @@ const props = defineProps<{ data: MapData[] }>();
 
 const mapChartRef = ref(null);
 
-onMounted(() => {
+onUpdated(() => {
   init();
 });
 
@@ -95,6 +95,8 @@ const init = () => {
   const sortedData = props.data.sort((a, b) => b.value - a.value);
   const top5 = sortedData.slice(0, 5);
   const top10 = sortedData.slice(5, 10);
+  console.log('top5 :>> ', top5);
+  console.log('top10 :>> ', top10);
   const myChart = echarts.init(mapChartRef.value);
   echarts.registerMap("china", china);
   myChart.setOption({
@@ -145,7 +147,7 @@ const init = () => {
         data: convertData(top5),
         symbolSize: 8,
         label: {
-          formatter: "{b}+{@[2]}",
+          formatter: "{b}：{@[2]}",
           position: "right",
           show: true,
           fontSize: 13,
@@ -167,7 +169,7 @@ const init = () => {
         data: convertData(top10),
         symbolSize: 5,
         label: {
-          formatter: "+{@[2]}",
+          formatter: "{@[2]}",
           position: "right",
           show: true,
           fontSize: 12,
