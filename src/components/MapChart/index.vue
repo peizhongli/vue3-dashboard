@@ -98,10 +98,6 @@ const init = () => {
   const myChart = echarts.init(mapChartRef.value);
   echarts.registerMap("china", china);
   myChart.setOption({
-    // tooltip: {
-    //   trigger: "item",
-    //   formatter: "{b}：{c}",
-    // },
     geo: {
       map: "china",
       left: 0,
@@ -200,7 +196,7 @@ const init = () => {
 @import "@assets/styles/common.less";
 
 .wrap {
-  width: 1390 * @px2vw;
-  height: 1139 * @px2vw;
+  width: 100%;
+  height: 100%;
 }
 </style>
