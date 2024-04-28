@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { $get } from "@src/service/request";
-import cityCodeMap from "@assets/JSON/cityCode.json";
+// import { $get } from "@src/service/request";
+// import cityCodeMap from "@assets/JSON/cityCode.json";
 import MapChart from "@components/MapChart/index.vue";
 import RealtimeData from "@components/RealtimeData/index.vue";
 import TimerCount from "@components/TimerCount/index.vue";
@@ -9,11 +9,11 @@ import Top10BarChart from "@components/Top10BarChart/index.vue";
 import PieChart from "@components/PieChart/index.vue";
 import WordCloud from "@components/WordCloud/index.vue";
 
-interface WeatherData {
-  data: {
-    pm25: number;
-  };
-}
+// interface WeatherData {
+//   data: {
+//     pm25: number;
+//   };
+// }
 
 interface MapPM25 {
   code: string;
@@ -57,25 +57,30 @@ const platformRate = ref([
 // };
 
 const getWeather = async () => {
-  const pList: Promise<MapPM25>[] = [];
-  Object.entries(
-    cityCodeMap as {
-      [key: string]: { city_code: string; children?: { city_code: string }[] };
-    }
-  ).forEach(([key, val]) => {
-    pList.push(
-      new Promise((resolve, reject) => {
-        $get(`/weather/${val.city_code || val.children?.[0].city_code}`)
-          .then((r: WeatherData) => {
-            // const forecast = r.data.forecast.slice(0, 1);
-            resolve({ code: key, value: r.data.pm25 });
-          })
-          .catch((e: Error) => reject(e));
-      })
-    );
-  });
-  const res = await Promise.all(pList);
-  mapData.value = res;
+  // const pList: Promise<MapPM25>[] = [];
+  // Object.entries(
+  //   cityCodeMap as {
+  //     [key: string]: { city_code: string; children?: { city_code: string }[] };
+  //   }
+  // ).forEach(([key, val]) => {
+  //   pList.push(
+  //     new Promise((resolve, reject) => {
+  //       $get(`/weather/${val.city_code || val.children?.[0].city_code}`)
+  //         .then((r: WeatherData) => {
+  //           // const forecast = r.data.forecast.slice(0, 1);
+  //           resolve({ code: key, value: r.data.pm25 });
+  //         })
+  //         .catch((e: Error) => reject(e));
+  //     })
+  //   );
+  // });
+  // const res = await Promise.all(pList);
+  mapData.value = [
+    { code: "110000", value: 200 },
+    { code: "120000", value: 210 },
+    { code: "140000", value: 220 },
+    { code: "150000", value: 230 },
+  ];
   console.log("res :>> ", mapData.value);
 };
 
