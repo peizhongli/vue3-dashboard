@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import * as echarts from "echarts";
-import { computed, onMounted, onUpdated, ref, toRefs } from "vue";
+import { computed } from "vue";
 
 interface RealtimeData {
   pv: number;

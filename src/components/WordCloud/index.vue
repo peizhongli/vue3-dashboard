@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Cloud, { Word } from "./Cloud.vue";
-import { computed, onMounted, onUpdated, ref, toRefs } from "vue";
 
 const $props = defineProps<{ data: Word[] }>();
 </script>

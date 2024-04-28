@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUpdated, ref, toRefs } from "vue";
+import { onMounted, ref } from "vue";
 
 export interface Word {
   keyword: string;

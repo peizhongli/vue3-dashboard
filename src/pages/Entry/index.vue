@@ -8,7 +8,6 @@ import TimerCount from "@components/TimerCount/index.vue";
 import Top10BarChart from "@components/Top10BarChart/index.vue";
 import PieChart from "@components/PieChart/index.vue";
 import WordCloud from "@components/WordCloud/index.vue";
-import { SUCCESS_CODE } from "../../service/request/constant";
 
 interface WeatherData {
   data: {
@@ -21,7 +20,7 @@ interface MapPM25 {
   value: number;
 }
 
-const tip = ref("");
+// const tip = ref("");
 const mapData = ref<MapPM25[]>([]);
 
 const pvUv = ref({
@@ -50,23 +49,23 @@ const platformRate = ref([
   { name: "微信公众号", count: 666, solveRate: 22.1, satisfactionRate: 33.3 },
 ]);
 
-const getTip = async () => {
-  const { code, data } = await $get("https://api.xygeng.cn/one");
-  if (code === SUCCESS_CODE) {
-    tip.value = data.content;
-  }
-};
+// const getTip = async () => {
+//   const { code, data } = await $get("https://api.xygeng.cn/one");
+//   if (code === SUCCESS_CODE) {
+//     tip.value = data.content;
+//   }
+// };
 
 const getWeather = async () => {
   const pList: Promise<MapPM25>[] = [];
   Object.entries(
     cityCodeMap as {
-      [key: string]: { city_code: string; children: { city_code: string }[] };
+      [key: string]: { city_code: string; children?: { city_code: string }[] };
     }
   ).forEach(([key, val]) => {
     pList.push(
       new Promise((resolve, reject) => {
-        $get(`/weather/${val.city_code || val.children[0].city_code}`)
+        $get(`/weather/${val.city_code || val.children?.[0].city_code}`)
           .then((r: WeatherData) => {
             // const forecast = r.data.forecast.slice(0, 1);
             resolve({ code: key, value: r.data.pm25 });

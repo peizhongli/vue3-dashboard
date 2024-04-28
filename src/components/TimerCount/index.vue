@@ -1,13 +1,5 @@
-<template>
-  <div :style="properties">
-    <span>{{ t.yyyy }}年{{ t.mm }}月{{ t.dd }}日 </span>
-    <span class="hour"></span>
-    <span class="minute"></span>
-    <span class="second"></span>
-  </div>
-</template>
-<script setup>
-import { computed, onMounted, ref } from "vue";
+<script setup lang="ts">
+import { computed, ref } from "vue";
 
 const now = new Date();
 
@@ -29,6 +21,14 @@ const properties = computed(() => {
   return `--dh: ${dh}; --dm: ${dm}; --ds: ${ds};`;
 });
 </script>
+<template>
+  <div :style="properties">
+    <span>{{ t.yyyy }}年{{ t.mm }}月{{ t.dd }}日 </span>
+    <span class="hour"></span>
+    <span class="minute"></span>
+    <span class="second"></span>
+  </div>
+</template>
 <style lang="less" scoped>
 div {
   font-size: 12px;

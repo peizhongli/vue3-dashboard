@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as echarts from "echarts";
-import { onMounted, onUpdated, ref, toRefs } from "vue";
+import { onMounted, ref } from "vue";
 interface Platform {
   name: string;
   count: number;

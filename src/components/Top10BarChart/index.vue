@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as echarts from "echarts";
-import { onMounted, onUpdated, ref, toRefs } from "vue";
+import { onMounted, ref } from "vue";
 import top1Icon from "@assets/images/top1.png";
 import top2Icon from "@assets/images/top2.png";
 import top3Icon from "@assets/images/top3.png";
