@@ -83,7 +83,7 @@ const convertData = (data: MapData[]) =>
     return r;
   }, []);
 
-const props = defineProps<{ data: MapData[] }>();
+const $props = defineProps<{ data: MapData[] }>();
 
 const mapChartRef = ref(null);
 
@@ -92,11 +92,9 @@ onUpdated(() => {
 });
 
 const init = () => {
-  const sortedData = props.data.sort((a, b) => b.value - a.value);
+  const sortedData = $props.data.sort((a, b) => b.value - a.value);
   const top5 = sortedData.slice(0, 5);
   const top10 = sortedData.slice(5, 10);
-  console.log('top5 :>> ', top5);
-  console.log('top10 :>> ', top10);
   const myChart = echarts.init(mapChartRef.value);
   echarts.registerMap("china", china);
   myChart.setOption({

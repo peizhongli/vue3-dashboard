@@ -3,7 +3,11 @@ import { onMounted, ref } from "vue";
 import { $get } from "@src/service/request";
 import cityCodeMap from "@assets/JSON/cityCode.json";
 import MapChart from "@components/MapChart/index.vue";
+import RealtimeData from "@components/RealtimeData/index.vue";
 import TimerCount from "@components/TimerCount/index.vue";
+import Top10BarChart from "@components/Top10BarChart/index.vue";
+import PieChart from "@components/PieChart/index.vue";
+import WordCloud from "@components/WordCloud/index.vue";
 import { SUCCESS_CODE } from "../../service/request/constant";
 
 interface WeatherData {
@@ -19,6 +23,32 @@ interface MapPM25 {
 
 const tip = ref("");
 const mapData = ref<MapPM25[]>([]);
+
+const pvUv = ref({
+  pv: 6666,
+  uv: 12345,
+});
+
+const top10Questions = ref(
+  Array.from({ length: 10 }).map((_, index) => ({
+    keyword: `问题${index + 1}`,
+    count: 100 - 10 * index,
+  }))
+);
+
+const hotKeywords = ref(
+  Array.from({ length: 50 }).map((_, index) => ({
+    keyword: `热词${index + 1}`,
+    count: 100 - 10 * index,
+  }))
+);
+
+const platformRate = ref([
+  { name: "桌面网站", count: 235, solveRate: 22.1, satisfactionRate: 33.3 },
+  { name: "移动网站", count: 444, solveRate: 22.1, satisfactionRate: 33.3 },
+  { name: "微信小程序", count: 555, solveRate: 22.1, satisfactionRate: 33.3 },
+  { name: "微信公众号", count: 666, solveRate: 22.1, satisfactionRate: 33.3 },
+]);
 
 const getTip = async () => {
   const { code, data } = await $get("https://api.xygeng.cn/one");
@@ -62,11 +92,17 @@ onMounted(() => {
   </section>
   <!-- <div>{{ tip }}</div> -->
   <section class="content">
-    <section class="left"></section>
+    <section class="left">
+      <RealtimeData :data="pvUv" />
+      <PieChart :data="platformRate" />
+    </section>
     <section class="middle">
       <MapChart :data="mapData" />
     </section>
-    <section class="right"></section>
+    <section class="right">
+      <Top10BarChart :data="top10Questions" />
+      <WordCloud :data="hotKeywords" />
+    </section>
   </section>
 </template>
 
@@ -86,9 +122,12 @@ onMounted(() => {
 .content {
   flex: 1;
   display: flex;
+  padding: 0 40 * @px2vw 20 * @px2vw;
 
   .left,
   .right {
+    display: flex;
+    flex-direction: column;
     flex-shrink: 0;
     width: 600 * @px2vw;
   }
@@ -98,9 +137,7 @@ onMounted(() => {
     min-width: 500 * @px2vw;
     min-height: 300 * @px2vw;
     padding-top: 20 * @px2vw;
-  }
-
-  .right {
+    margin: 0 14 * @px2vw;
   }
 }
 </style>
