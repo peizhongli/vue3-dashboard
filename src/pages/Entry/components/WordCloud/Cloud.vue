@@ -72,6 +72,8 @@ const init = () => {
     const z = RADIUS * Math.cos(a);
     tagList.value.push(new Tag(i, x, y, z));
   });
+
+  animate();
 };
 
 const rotateX = () => {
@@ -103,7 +105,6 @@ const animate = () => {
 
 onMounted(() => {
   init();
-  animate();
 });
 </script>
 

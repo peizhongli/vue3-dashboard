@@ -2,12 +2,12 @@
 import { onMounted, ref } from "vue";
 // import { $get } from "@src/service/request";
 // import cityCodeMap from "@assets/JSON/cityCode.json";
-import MapChart from "@components/MapChart/index.vue";
-import RealtimeData from "@components/RealtimeData/index.vue";
-import TimerCount from "@components/TimerCount/index.vue";
-import Top10BarChart from "@components/Top10BarChart/index.vue";
-import PieChart from "@components/PieChart/index.vue";
-import WordCloud from "@components/WordCloud/index.vue";
+import MapChart from "./components/MapChart/index.vue";
+import RealtimeData from "./components/RealtimeData/index.vue";
+import TimerCount from "./components/TimerCount/index.vue";
+import Top10BarChart from "./components/Top10BarChart/index.vue";
+import PieChart from "./components/PieChart/index.vue";
+import WordCloud from "./components/WordCloud/index.vue";
 
 // interface WeatherData {
 //   data: {

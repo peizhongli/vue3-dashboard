@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import * as echarts from "echarts";
 import { onMounted, ref } from "vue";
 import ClipBox from "@components/ClipBox/index.vue";
 import top1Icon from "@assets/images/top1.png";
 import top2Icon from "@assets/images/top2.png";
 import top3Icon from "@assets/images/top3.png";
+import useECharts from "@hooks/useECharts";
 
 interface Question {
   keyword: string;
@@ -15,20 +15,21 @@ const COMMON_RICH = {
   width: 15,
   height: 20,
 };
+
+const { init } = useECharts();
 const $props = defineProps<{ data: Question[] }>();
 
-const barChartRef = ref(null);
+const barChartRef = ref<HTMLElement>();
 
 onMounted(() => {
-  init();
+  initChart();
 });
 
-const init = () => {
+const initChart = () => {
   const data = $props.data.reverse();
   const allCount = data.map((i) => i.count);
   const allKeywords = data.map((i) => i.keyword.slice(0, 16));
-  const myChart = echarts.init(barChartRef.value);
-  myChart.setOption({
+  init(barChartRef.value as HTMLElement, {
     grid: {
       x2: 40,
       x: 100,

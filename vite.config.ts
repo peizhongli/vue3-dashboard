@@ -23,6 +23,9 @@ export default defineConfig({
       "@assets": "/src/assets",
     },
   },
+  build: {
+    outDir: 'docs'
+  },
   server: {
     proxy: {
       "/api/weather": {
@@ -34,8 +37,5 @@ export default defineConfig({
         },
       },
     },
-  },
-  build: {
-    assetsDir: ''
   }
 });

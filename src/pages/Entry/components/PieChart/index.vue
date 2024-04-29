@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import * as echarts from "echarts";
 import { onMounted, ref } from "vue";
 import ClipBox from "@components/ClipBox/index.vue";
 import { ZRColor } from "echarts/types/dist/shared.js";
+import useECharts from "@hooks/useECharts";
 
 interface Platform {
   name: string;
@@ -11,19 +11,19 @@ interface Platform {
   satisfactionRate: number;
 }
 
+const { init } = useECharts();
 const $props = defineProps<{ data: Platform[] }>();
 
-const pieChartRef = ref(null);
+const pieChartRef = ref<HTMLElement>();
 
 onMounted(() => {
-  init();
+  initChart();
 });
 
-const init = () => {
+const initChart = () => {
   const data = $props.data.map((i) => ({ name: i.name, value: i.count }));
   const allPlatform = data.map((i) => i.name);
-  const myChart = echarts.init(pieChartRef.value);
-  myChart.setOption({
+  init(pieChartRef.value as HTMLElement, {
     color: [
       ["#5EC0EF", "#1B76C4"],
       ["#56D09D", "#1A9062"],

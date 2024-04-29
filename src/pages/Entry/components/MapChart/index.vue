@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import * as echarts from "echarts";
 import { onUpdated, ref } from "vue";
-import china from "@assets/JSON/china.json";
-import { GeoJSON } from "echarts/types/src/coord/geo/geoTypes.js";
+import { features } from "@assets/JSON/china.json";
+import useECharts from "@hooks/useECharts";
 
 interface MapData {
   code: string;
@@ -29,7 +28,7 @@ interface SeriesData {
   value: number[];
 }
 
-const geoCoordMap = (china.features as Feature[]).reduce(
+const geoCoordMap = (features as Feature[]).reduce(
   (r: Geo, i: Feature) => ({
     ...r,
     [`${i.properties.adcode}`]: {
@@ -84,21 +83,20 @@ const convertData = (data: MapData[]) =>
     return r;
   }, []);
 
+const { init } = useECharts({ needRegiMap: true });
 const $props = defineProps<{ data: MapData[] }>();
 
-const mapChartRef = ref(null);
+const mapChartRef = ref<HTMLElement>();
 
 onUpdated(() => {
-  init();
+  initChart();
 });
 
-const init = () => {
+const initChart = () => {
   const sortedData = $props.data.sort((a, b) => b.value - a.value);
   const top5 = sortedData.slice(0, 5);
   const top10 = sortedData.slice(5, 10);
-  const myChart = echarts.init(mapChartRef.value);
-  echarts.registerMap("china", china as GeoJSON);
-  myChart.setOption({
+  init(mapChartRef.value as HTMLElement, {
     geo: {
       map: "china",
       left: 0,
