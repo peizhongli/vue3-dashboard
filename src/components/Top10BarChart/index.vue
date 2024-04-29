@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import * as echarts from "echarts";
 import { onMounted, ref } from "vue";
+import ClipBox from "@components/ClipBox/index.vue";
 import top1Icon from "@assets/images/top1.png";
 import top2Icon from "@assets/images/top2.png";
 import top3Icon from "@assets/images/top3.png";
@@ -125,6 +126,7 @@ const init = () => {
         name: "进度",
         type: "bar",
         barWidth: 6,
+        barCategoryGap: 0,
         itemStyle: {
           borderRadius: 5,
           fontSize: 14,
@@ -159,85 +161,15 @@ const init = () => {
 </script>
 
 <template>
-  <div class="wrap">
-    <p>机器人TOP10问题排名</p>
-    <div ref="barChartRef"></div>
-  </div>
+  <ClipBox direction="right" title="机器人TOP10问题排名">
+    <div ref="barChartRef" class="chart-wrap"></div>
+  </ClipBox>
 </template>
 
 <style scoped lang="less">
 @import "@assets/styles/common.less";
 
-.wrap {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 10 * @px2vw;
-  width: 100%;
-  height: 513 * @px2vw;
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  &::before {
-    clip-path: polygon(
-      0% 38px,
-      16% 38px,
-      27% 0%,
-      95% 0,
-      100% 23px,
-      100% 100%,
-      0% 100%
-    );
-    background: #156dae;
-  }
-
-  &::after {
-    clip-path: polygon(
-      1px 39px,
-      16% 39px,
-      27% 1px,
-      95% 1px,
-      calc(100% - 1px) 23px,
-      calc(100% - 1px) calc(100% - 1px),
-      1px calc(100% - 1px)
-    );
-    background: #0d0c2a;
-  }
-
-  p {
-    position: relative;
-    width: 100%;
-    padding: 4 * @px2vw 24 * @px2vw;
-    margin-bottom: 4 * @px2vw;
-    font-size: 22 * @px2vw;
-    color: #fff;
-    background: transparent linear-gradient(to bottom, transparent, #172a5f);
-    clip-path: polygon(
-      0% 38px,
-      16% 38px,
-      27% 0%,
-      95% 0,
-      100% 23px,
-      100% 100%,
-      0% 100%
-    );
-    text-align: right;
-    z-index: 3;
-  }
-
-  div {
-    position: relative;
-    flex: 1;
-    z-index: 3;
-  }
+.chart-wrap {
+  height: 400 * @px2vw;
 }
 </style>

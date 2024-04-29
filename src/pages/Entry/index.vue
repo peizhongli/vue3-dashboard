@@ -91,7 +91,7 @@ onMounted(() => {
 
 <template>
   <section class="title">
-    <div>机器人服务大数据</div>
+    <div class="title-content">机器人服务大数据</div>
     <TimerCount />
   </section>
   <!-- <div>{{ tip }}</div> -->
@@ -121,12 +121,34 @@ onMounted(() => {
   color: #fff;
   text-shadow: 0 0 5px #00ecff;
   font-size: 66 * @px2vw;
+
+  &-content {
+    display: flex;
+    align-items: center;
+
+    &::before,
+    &::after {
+      content: "";
+      width: 200 * @px2vw;
+      height: 3 * @px2vw;
+    }
+
+    &::before {
+      margin-right: 20 * @px2vw;
+      background-image: linear-gradient(to right, transparent, #156dae);
+    }
+
+    &::after {
+      margin-left: 20 * @px2vw;
+      background-image: linear-gradient(to left, transparent, #156dae);
+    }
+  }
 }
 
 .content {
   flex: 1;
   display: flex;
-  padding: 0 40 * @px2vw 20 * @px2vw;
+  padding: 20 * @px2vw;
 
   .left,
   .right {
@@ -138,7 +160,7 @@ onMounted(() => {
 
   .middle {
     flex: 1;
-    min-width: 500 * @px2vw;
+    min-width: 600 * @px2vw;
     min-height: 300 * @px2vw;
     padding-top: 20 * @px2vw;
     margin: 0 14 * @px2vw;

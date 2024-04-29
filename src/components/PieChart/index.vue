@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import * as echarts from "echarts";
 import { onMounted, ref } from "vue";
+import ClipBox from "@components/ClipBox/index.vue";
+import { ZRColor } from "echarts/types/dist/shared.js";
+
 interface Platform {
   name: string;
   count: number;
@@ -26,23 +29,25 @@ const init = () => {
       ["#56D09D", "#1A9062"],
       ["#BB8AF1", "#7232E1"],
       ["#E1F18A", "#DCE132"],
-    ].map(([startColor, endColor]) => ({
-      type: "linear",
-      x: 0,
-      y: 0,
-      x2: 0,
-      y2: 1,
-      colorStops: [
-        {
-          offset: 0,
-          color: startColor, // 0% 处的颜色
-        },
-        {
-          offset: 1,
-          color: endColor, // 100% 处的颜色
-        },
-      ],
-    })),
+    ].map(
+      ([startColor, endColor]): ZRColor => ({
+        type: "linear",
+        x: 0,
+        y: 0,
+        x2: 0,
+        y2: 1,
+        colorStops: [
+          {
+            offset: 0,
+            color: startColor, // 0% 处的颜色
+          },
+          {
+            offset: 1,
+            color: endColor, // 100% 处的颜色
+          },
+        ],
+      })
+    ),
     legend: {
       type: "plain",
       orient: "vertical",
@@ -129,9 +134,8 @@ const init = () => {
 </script>
 
 <template>
-  <div class="wrap">
-    <p class="title">业务量渠道占比及质量数据</p>
-    <div ref="pieChartRef"></div>
+  <ClipBox customClass="wrap" title="业务量渠道占比及质量数据">
+    <div ref="pieChartRef" class="chart-wrap"></div>
     <ul>
       <li v-for="(i, index) in $props.data" :key="index">
         <p className="subtitle">{{ i.name }}</p>
@@ -141,7 +145,7 @@ const init = () => {
         </div>
       </li>
     </ul>
-  </div>
+  </ClipBox>
 </template>
 
 <style scoped lang="less">
@@ -149,74 +153,14 @@ const init = () => {
 
 .wrap {
   flex: 1;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 10 * @px2vw;
-  width: 100%;
   margin-top: 12 * @px2vw;
 
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
+  & :deep(.clip-content) {
+    display: flex;
+    flex-direction: column;
   }
 
-  &::before {
-    clip-path: polygon(
-      0% 18px,
-      20px 0%,
-      71% 0%,
-      87% 37px,
-      100% 37px,
-      100% 100%,
-      0% 100%
-    );
-    background: #156dae;
-  }
-
-  &::after {
-    clip-path: polygon(
-      1px 18px,
-      20px 1px,
-      71% 1px,
-      87% 38px,
-      calc(100% - 1px) 38px,
-      calc(100% - 1px) calc(100% - 1px),
-      1px calc(100% - 1px)
-    );
-    background: #0d0c2a;
-  }
-
-  p,
-  div {
-    position: relative;
-    z-index: 3;
-  }
-
-  .title {
-    padding: 4 * @px2vw 24 * @px2vw;
-    margin-bottom: 4 * @px2vw;
-    font-size: 22 * @px2vw;
-    color: #fff;
-    background: transparent linear-gradient(to bottom, transparent, #172a5f);
-    clip-path: polygon(
-      0% 15px,
-      16px 0%,
-      71% 0,
-      88% 37px,
-      100% 35px,
-      100% 100%,
-      0% 100%
-    );
-  }
-
-  div {
+  .chart-wrap {
     flex: 1;
   }
 
@@ -243,20 +187,8 @@ const init = () => {
       margin: 0;
       padding: 22 * @px2vw 20 * @px2vw;
       box-shadow: 0 0 10 * @px2vw #00ecff7f inset;
-      background: no-repeat;
-      background-image: linear-gradient(to left, #156dae, #156dae),
-        linear-gradient(to bottom, #156dae, #156dae),
-        linear-gradient(to left, #156dae, #156dae),
-        linear-gradient(to bottom, #156dae, #156dae),
-        linear-gradient(to left, #156dae, #156dae),
-        linear-gradient(to bottom, #156dae, #156dae),
-        linear-gradient(to left, #156dae, #156dae),
-        linear-gradient(to left, #156dae, #156dae);
-      background-position: left top, left top, right top, right top, left bottom,
-        left bottom, right bottom, right bottom;
-      background-size: 1 * @px2vw 10 * @px2vw, 10 * @px2vw 1 * @px2vw,
-        1 * @px2vw 10 * @px2vw, 10 * @px2vw 1 * @px2vw;
       font-size: 14 * @px2vw;
+      .borderInnerShadowBox();
 
       p {
         color: #fff;

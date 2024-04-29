@@ -1,1 +1,19 @@
 @px2vw: 100vw / 1920;
+
+// 四角边框
+.borderInnerShadowBox(@color:#156dae, @size : 10) {
+  background: no-repeat;
+  // 左上 右上 右下 左下
+  background-image: linear-gradient(to left, @color, @color),
+    linear-gradient(to bottom, @color, @color),
+    linear-gradient(to left, @color, @color),
+    linear-gradient(to bottom, @color, @color),
+    linear-gradient(to left, @color, @color),
+    linear-gradient(to left, @color, @color),
+    linear-gradient(to left, @color, @color),
+    linear-gradient(to bottom, @color, @color);
+  background-position: left top, left top, right top, right top, right bottom,
+    right bottom, left bottom, left bottom;
+  background-size: 1 * @px2vw @size * @px2vw, @size * @px2vw 1 * @px2vw,
+    1 * @px2vw @size * @px2vw, @size * @px2vw 1 * @px2vw;
+}
