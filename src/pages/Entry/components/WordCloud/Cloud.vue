@@ -21,26 +21,37 @@ const colors = [
 
 const RADIUS = 120; // 3d球的半径
 const FALL_LENGTH = 320;
-const CX = ref(0);
-const CY = ref(0);
+const ANGLE = Math.PI / 500;
 
 class Tag {
   el: HTMLElement;
   x: number;
   y: number;
   z: number;
+  CX: number;
+  CY: number;
 
-  constructor(el: HTMLElement, x: number, y: number, z: number) {
+  constructor(options: {
+    el: HTMLElement;
+    x: number;
+    y: number;
+    z: number;
+    CX: number;
+    CY: number;
+  }) {
+    const { el, x, y, z, CX, CY } = options;
     this.el = el;
     this.x = x;
     this.y = y;
     this.z = z;
+    this.CX = CX;
+    this.CY = CY;
   }
   move() {
-    let scale = FALL_LENGTH / (FALL_LENGTH - this.z);
-    let alpha = (this.z + RADIUS) / (2 * RADIUS);
-    let left = this.x + CX.value - this.el.offsetWidth / 2 + 40 + "px"; // 水平偏移
-    let top = this.y + CY.value - this.el.offsetHeight / 2 + 10 + "px"; // 竖直偏移
+    const scale = FALL_LENGTH / (FALL_LENGTH - this.z);
+    const alpha = (this.z + RADIUS) / (2 * RADIUS);
+    const left = this.x + this.CX - this.el.offsetWidth / 2 + 40 + "px"; // 水平偏移
+    const top = this.y + this.CY - this.el.offsetHeight / 2 + 10 + "px"; // 竖直偏移
     this.el.style.opacity = `${alpha}`;
     this.el.style.zIndex = `${parseInt(`${scale * 100}`)}`;
     this.el.style.transform = `translate(${left},${top}) scale(${scale})`;
@@ -56,8 +67,8 @@ const tagsRef = ref<HTMLElement[]>([]);
 const init = () => {
   const tagsLen = tagsRef.value.length;
   const minCount = Math.min(...$props.data.map((i) => i.count));
-  CX.value = (wrapRef.value as HTMLElement).offsetWidth / 2;
-  CY.value = (wrapRef.value as HTMLElement).offsetHeight / 2;
+  const CX = (wrapRef.value as HTMLElement).offsetWidth / 2;
+  const CY = (wrapRef.value as HTMLElement).offsetHeight / 2;
 
   tagsRef.value.forEach((i, index) => {
     const fontScale = ($props.data[index].count / minCount) * 16;
@@ -70,16 +81,15 @@ const init = () => {
     const x = RADIUS * 1.15 * Math.sin(a) * Math.cos(b);
     const y = RADIUS * Math.sin(a) * Math.sin(b);
     const z = RADIUS * Math.cos(a);
-    tagList.value.push(new Tag(i, x, y, z));
+    tagList.value.push(new Tag({ el: i, x, y, z, CX, CY }));
   });
 
   animate();
 };
 
 const rotateX = () => {
-  const angleX = Math.PI / 500;
-  const cos = Math.cos(angleX);
-  const sin = Math.sin(angleX);
+  const cos = Math.cos(ANGLE);
+  const sin = Math.sin(ANGLE);
   tagList.value.forEach((i) => {
     i.y = i.y * cos - i.z * sin;
     i.z = i.z * cos + i.y * sin;
@@ -87,9 +97,8 @@ const rotateX = () => {
 };
 
 const rotateY = () => {
-  const angleY = Math.PI / 500;
-  const cos = Math.cos(angleY);
-  const sin = Math.sin(angleY);
+  const cos = Math.cos(ANGLE);
+  const sin = Math.sin(ANGLE);
   tagList.value.forEach((i) => {
     i.x = i.x * cos - i.z * sin;
     i.z = i.z * cos + i.x * sin;
