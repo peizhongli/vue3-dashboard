@@ -1,28 +1,26 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
 const now = new Date();
 
-const t = ref({
+const t = {
   yyyy: now.getFullYear(),
   mm: now.getMonth() + 1,
   dd: now.getDate(),
   h: now.getHours(),
   m: now.getMinutes(),
   s: now.getSeconds(),
-});
+};
 
-const properties = computed(() => {
-  const { s, m, h } = t.value;
+const getProperties = () => {
+  const { s, m, h } = t;
   // 计算偏移量，比如秒为30的时候，分钟其实也走了30/60，时针同理，最后算出需要延迟的秒数
   const ds = s;
   const dm = (m + s / 60) * 60;
   const dh = (h + m / 60 + s / 60 / 60) * 60 * 60;
   return `--dh: ${dh}; --dm: ${dm}; --ds: ${ds};`;
-});
+};
 </script>
 <template>
-  <div :style="properties">
+  <div :style="getProperties()">
     <span>{{ t.yyyy }}年{{ t.mm }}月{{ t.dd }}日 </span>
     <span class="hour"></span>
     <span class="minute"></span>
