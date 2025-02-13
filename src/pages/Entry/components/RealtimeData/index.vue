@@ -14,15 +14,15 @@ const uv = computed(() => `${$props.data.uv}`.padStart(7, "0"));
 </script>
 
 <template>
-  <ClipBox title="实时累计数据">
-    <div data-title="浏览量" class="realtime-content">
+  <ClipBox title="当前数据">
+    <div data-title="PV" class="realtime-content">
       <ul>
         <li v-for="(i, index) in pv" :key="index">
           <span>{{ i }}</span>
         </li>
       </ul>
     </div>
-    <div data-title="访客量" class="realtime-content">
+    <div data-title="UV" class="realtime-content">
       <ul>
         <li v-for="(i, index) in uv" :key="index">
           <span>{{ i }}</span>

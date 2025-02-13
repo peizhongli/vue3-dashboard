@@ -25,10 +25,10 @@ const initChart = () => {
   const allPlatform = data.map((i) => i.name);
   init(pieChartRef.value as HTMLElement, {
     color: [
-      ["#5EC0EF", "#1B76C4"],
-      ["#56D09D", "#1A9062"],
-      ["#BB8AF1", "#7232E1"],
-      ["#E1F18A", "#DCE132"],
+      ["#9EC0EF", "#9B76C4"],
+      ["#96D09D", "#9A9062"],
+      ["#9B8AF1", "#9232E1"],
+      ["#91F18A", "#9CE132"],
     ].map(
       ([startColor, endColor]): ZRColor => ({
         type: "linear",
@@ -80,14 +80,14 @@ const initChart = () => {
               fontSize: 14,
             },
             d: {
-              color: "#00ECFF",
+              color: "#ffECFF",
               fontSize: 14,
             },
           },
         },
         labelLine: {
           lineStyle: {
-            color: "#00ECFF",
+            color: "#eeECFF",
           },
         },
         emphasis: {
@@ -104,7 +104,7 @@ const initChart = () => {
                 fontWeight: "bold",
               },
               d: {
-                color: "#00ECFF",
+                color: "#aaEdFF",
                 fontWeight: "bold",
               },
             },
@@ -134,14 +134,14 @@ const initChart = () => {
 </script>
 
 <template>
-  <ClipBox customClass="wrap" title="业务量渠道占比及质量数据">
+  <ClipBox customClass="wrap" title="占比量">
     <div ref="pieChartRef" class="chart-wrap"></div>
     <ul>
       <li v-for="(i, index) in $props.data" :key="index">
         <p className="subtitle">{{ i.name }}</p>
         <div className="channel-box">
-          <p data-des="解决率">{{ i.solveRate }}%</p>
-          <p data-des="满意率">{{ i.satisfactionRate }}%</p>
+          <p data-des="数据1">{{ i.solveRate }}%</p>
+          <p data-des="数据2">{{ i.satisfactionRate }}%</p>
         </div>
       </li>
     </ul>
@@ -180,7 +180,7 @@ const initChart = () => {
     .subtitle {
       margin-bottom: 6 * @px2vw;
       font-size: 20 * @px2vw;
-      color: #00ecff;
+      color: #aaecff;
     }
 
     .channel-box {
@@ -196,7 +196,7 @@ const initChart = () => {
         &::before {
           content: attr(data-des);
           margin-right: 2 * @px2vw;
-          color: #00ecff;
+          color: #aaecff;
         }
 
         & + p {

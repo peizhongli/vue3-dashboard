@@ -30,23 +30,23 @@ const pvUv = ref({
 
 const top10Questions = ref(
   Array.from({ length: 10 }).map((_, index) => ({
-    keyword: `问题${index + 1}`,
+    keyword: `Q${index + 1}`,
     count: 100 - 10 * index,
   }))
 );
 
 const hotKeywords = ref(
   Array.from({ length: 50 }).map((_, index) => ({
-    keyword: `热词${index + 1}`,
+    keyword: `阿巴阿巴${index + 1}`,
     count: 100 - 10 * index,
   }))
 );
 
 const platformRate = ref([
-  { name: "桌面网站", count: 235, solveRate: 22.1, satisfactionRate: 33.3 },
-  { name: "移动网站", count: 444, solveRate: 22.1, satisfactionRate: 33.3 },
-  { name: "微信小程序", count: 555, solveRate: 22.1, satisfactionRate: 33.3 },
-  { name: "微信公众号", count: 666, solveRate: 22.1, satisfactionRate: 33.3 },
+  { name: "商场", count: 235, solveRate: 22.1, satisfactionRate: 33.3 },
+  { name: "超市", count: 444, solveRate: 22.1, satisfactionRate: 33.3 },
+  { name: "停车场", count: 555, solveRate: 22.1, satisfactionRate: 33.3 },
+  { name: "物业", count: 666, solveRate: 22.1, satisfactionRate: 33.3 },
 ]);
 
 // const getTip = async () => {
@@ -91,7 +91,7 @@ onMounted(() => {
 
 <template>
   <section class="title">
-    <div class="title-content">机器人服务大数据</div>
+    <div class="title-content">应用概览</div>
     <TimerCount />
   </section>
   <!-- <div>{{ tip }}</div> -->

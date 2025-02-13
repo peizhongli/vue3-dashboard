@@ -115,7 +115,7 @@ const initChart = () => {
           show: false,
         },
         axisLabel: {
-          color: "#00ECFF",
+          color: "#ccECFF",
           fontSize: 14,
         },
         axisTick: "none",
@@ -140,11 +140,11 @@ const initChart = () => {
             colorStops: [
               {
                 offset: 0,
-                color: "#FFB739", // 0% 处的颜色
+                color: "#aaB739", // 0% 处的颜色
               },
               {
                 offset: 1,
-                color: "#00E0FF", // 100% 处的颜色
+                color: "#ccE0FF", // 100% 处的颜色
               },
             ],
           },
@@ -162,7 +162,7 @@ const initChart = () => {
 </script>
 
 <template>
-  <ClipBox direction="right" title="机器人TOP10问题排名">
+  <ClipBox direction="right" title="热点话术">
     <div ref="barChartRef" class="chart-wrap"></div>
   </ClipBox>
 </template>
