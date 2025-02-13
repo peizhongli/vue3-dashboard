@@ -6,7 +6,7 @@ const $props = defineProps<{ data: Word[] }>();
 </script>
 
 <template>
-  <ClipBox customClass="wrap" direction="right" title="机器人TOP50词云">
+  <ClipBox customClass="wrap" direction="right" title="词云">
     <Cloud :data="$props.data" />
   </ClipBox>
 </template>
